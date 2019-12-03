@@ -5,12 +5,12 @@ class DemoSpider(scrapy.Spider):
     name = "demo"
 
     start_urls = [
-        'http://quotes.toscrape.com/page/8/',
+        'http://quotes.toscrape.com/page/1/',
     ]
 
     def parse(self, response):
         filename = 'quotes.csv'
-        with open(filename,'w',encoding='utf-8') as quote_file:
+        with open(filename,'a',encoding='utf-8') as quote_file:
             fieldnames = ['quote', 'author', 'tags']
             quote_writer = csv.DictWriter(quote_file,fieldnames=fieldnames)
             quote_writer.writeheader()
@@ -26,5 +26,5 @@ class DemoSpider(scrapy.Spider):
         if next_page is not None:
             return response.follow(next_page,callback=self.parse)
     
-    def insertin(text,author,tags):
+  
 
